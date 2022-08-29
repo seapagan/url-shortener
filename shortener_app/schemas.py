@@ -20,6 +20,18 @@ class URL(URLBase):
         orm_mode = True
 
 
+class URLListItem(URL):
+    """A single URL item, with extra 'url' field."""
+
+    url: str
+
+
+class URLList(BaseModel):
+    """List of URLs."""
+
+    urls: list[URLListItem]
+
+
 class URLInfo(URL):
     """Define URLInfo class."""
 

@@ -20,6 +20,11 @@ def create_db_url(db: Session, url: schemas.URLBase) -> models.URL:
     return db_url
 
 
+def get_all_urls(db: Session):
+    """Return a list of all URL's."""
+    return db.query(models.URL).all()
+
+
 def get_db_url_by_key(db: Session, url_key: str) -> models.URL:
     """Return a URL by specified key."""
     return (

@@ -33,6 +33,13 @@ def get_admin_info(db_url: models.URL) -> schemas.URLInfo:
     return db_url
 
 
+def get_list_info(db_url: models.URL) -> schemas.URLListItem:
+    """Return List info for the URL."""
+    base_url = URL(get_settings().base_url)
+    db_url.url = str(base_url.replace(path=db_url.key))
+    return db_url
+
+
 def raise_bad_request(message):
     """Raise an exception if the request is bad."""
     raise HTTPException(status_code=400, detail=message)
@@ -48,6 +55,14 @@ def raise_not_found(request):
 def read_root():
     """Root Path."""
     return "Welcome to the URL Shortener API :)"
+
+
+@app.get("/list", response_model=schemas.URLList)
+def list_urls(db: Session = Depends(get_db)):
+    """Return a list of all URLs in the database."""
+    url_list = crud.get_all_urls(db=db)
+    updated_list = [get_list_info(item) for item in url_list]
+    return {"urls": updated_list}
 
 
 @app.post("/url", response_model=schemas.URLInfo)
