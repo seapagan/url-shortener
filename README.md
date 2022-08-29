@@ -29,5 +29,5 @@ uvicorn shortener_app.main:app --reload
 
 Access the API at <http://localhost:8000>
 
-See the API Docs at <http://localhost:8000/docs> for a list of the active
-endpoints
+See the API Docs at <http://localhost:8000/docs> or
+<http://localhost:8000/redoc> for a list of the active endpoints

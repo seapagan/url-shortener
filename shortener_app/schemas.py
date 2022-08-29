@@ -1,4 +1,6 @@
 """Setup the model schemas."""
+from typing import List
+
 from pydantic import BaseModel
 
 
@@ -29,7 +31,7 @@ class URLListItem(URLBase):
 class URLList(BaseModel):
     """List of URLs."""
 
-    urls: list[URLListItem]
+    urls: List[URLListItem]
 
 
 class URLInfo(URL):
