@@ -17,3 +17,15 @@ Non-exhaustive list of planned additions, in no specific order.
   the option to Cancel.
 - List all active URLs
 - User-friendly Front-end (probably in React) for adding and editing URLs
+
+## Development
+
+Run a local development server from the project root using `Uvicorn` :
+
+```bash
+uvicorn shortener_app.main:app --reload
+```
+
+Access the API at <http://localhost:8000>
+
+See the API Docs at <http://localhost:8000/docs> for a list of the active endpoints
