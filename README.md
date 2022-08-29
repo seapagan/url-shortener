@@ -17,6 +17,7 @@ Non-exhaustive list of planned additions, in no specific order.
 - Peek the target of the shortened URL before visiting.
 - Option to add a delay to the redirect, showing the exact target URL and giving
   the option to Cancel.
+- Ability to edit URL target (requires the Admin key)
 - User-friendly Front-end (probably in React) for adding and editing URLs
 
 ## Development
