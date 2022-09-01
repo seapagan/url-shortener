@@ -24,6 +24,7 @@ Non-exhaustive list of planned additions, in no specific order.
   the option to Cancel.
 - User-friendly Front-end (probably in React) for adding and editing URLs.
 - Protected ability to purge all `is_active: false` URLs
+- Migrate away from SQLite, probably to a NO_SQL database with asyncio baked in.
 
 ## Development
 
