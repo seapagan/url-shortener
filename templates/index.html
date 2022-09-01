@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link href="{{ url_for('static', path='site.css') }}" rel="stylesheet" />
+    <base target="_blank" />
     <title>URL Shortener</title>
   </head>
 
@@ -22,14 +23,25 @@
       <p>This service is an API, there is nothing to see here ;)</p>
       <p>
         Go to the
-        <a href="https://github.com/seapagan/fastapi-url-shortener">GitHub</a>
+        <a
+          href="https://github.com/seapagan/fastapi-url-shortener"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
         repository for the code and usage instructions.
       </p>
     </main>
     <footer>
-      &copy; <a href="https://www.gnramsay.com">Grant Ramsay</a> 2022,
-      originally based on a tutorial by
-      <a href="https://realpython.com/">Real Python</a>.
+      &copy;
+      <a href="https://www.gnramsay.com" rel="noopener noreferrer"
+        >Grant Ramsay</a
+      >
+      2022, originally based on a tutorial by
+      <a
+        href="https://realpython.com/courses/url-shortener-fastapi/"
+        rel="noopener noreferrer"
+        >Real Python</a
+      >.
     </footer>
   </body>
 </html>
