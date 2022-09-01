@@ -12,7 +12,7 @@ from .database import SessionLocal, engine
 app = FastAPI(
     title="URL Shortener",
     description="A FastAPI-based URL shortener and redirector.",
-    version="0.2.0",
+    version="0.3.0",
 )
 models.Base.metadata.create_all(bind=engine)
 
