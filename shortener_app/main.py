@@ -2,6 +2,8 @@
 import validators
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from starlette.datastructures import URL
 
@@ -15,6 +17,9 @@ app = FastAPI(
     version="0.3.0",
 )
 models.Base.metadata.create_all(bind=engine)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 
 def get_db():
@@ -56,9 +61,10 @@ def raise_not_found(request):
 
 
 @app.get("/")
-def read_root():
+async def read_root(request: Request):
     """Root Path."""
-    return "Welcome to the URL Shortener API :)"
+    # return "Welcome to the URL Shortener API :)"
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/list", response_model=schemas.URLList)
