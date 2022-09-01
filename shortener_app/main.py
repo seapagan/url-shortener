@@ -1,7 +1,11 @@
 """Main FastAPI App."""
+from typing import Union
+
 import validators
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from starlette.datastructures import URL
 
@@ -15,6 +19,9 @@ app = FastAPI(
     version="0.3.0",
 )
 models.Base.metadata.create_all(bind=engine)
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 
 def get_db():
@@ -56,9 +63,20 @@ def raise_not_found(request):
 
 
 @app.get("/")
-def read_root():
-    """Root Path."""
-    return "Welcome to the URL Shortener API :)"
+async def root_path(
+    request: Request, accept: Union[str, None] = Header(default="text/html")
+):
+    """The API Root Path.
+
+    Display an HTML template in a browser, JSON response otherwise.
+    """
+    if accept.split(",")[0] == "text/html":
+        return templates.TemplateResponse("index.html", {"request": request})
+
+    return {
+        "info": "Seapagan's URL Shortener (c)2022",
+        "website": "https://github.com/seapagan/fastapi-url-shortener",
+    }
 
 
 @app.get("/list", response_model=schemas.URLList)
