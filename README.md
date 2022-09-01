@@ -12,6 +12,9 @@ definitely recommend checking out for a decent example of a non-trivial
 - `/{url_key}/peek` (GET) route to show the target url of the specified urk=l_key,
   without actually redirecting there. Allows users or front-end client to check
   the URL before visiting.
+- `/admin/{secret_key}` (PATCH) route to change the target URL of a link
+  identified by the secret_key. The body of the request needs to have the
+  `target_url` property containing the new URL which must be a valid URL
 
 ## Planned Features
 
@@ -19,8 +22,8 @@ Non-exhaustive list of planned additions, in no specific order.
 
 - Option to add a delay to the redirect, showing the exact target URL and giving
   the option to Cancel.
-- Ability to edit URL target (requires the Admin key)
 - User-friendly Front-end (probably in React) for adding and editing URLs.
+- Protected ability to purge all `is_active: false` URLs
 
 ## Development
 

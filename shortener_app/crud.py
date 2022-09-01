@@ -20,6 +20,16 @@ def create_db_url(db: Session, url: schemas.URLBase) -> models.URL:
     return db_url
 
 
+def update_db_url(
+    db: Session, url: schemas.URLBase, new_url: schemas.URLBase
+) -> models.URL:
+    """Update URL entry with new target."""
+    url.target_url = new_url.target_url
+    db.commit()
+    db.refresh(url)
+    return url
+
+
 def get_all_urls(db: Session):
     """Return a list of all URL's."""
     return db.query(models.URL).all()
