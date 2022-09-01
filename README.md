@@ -15,6 +15,8 @@ definitely recommend checking out for a decent example of a non-trivial
 - `/admin/{secret_key}` (PATCH) route to change the target URL of a link
   identified by the secret_key. The body of the request needs to have the
   `target_url` property containing the new URL which must be a valid URL
+- The Root Path ("/") will return a short HTML template if viewed in a Web
+  Browser, JSON otherwise.
 
 ## Planned Features
 
