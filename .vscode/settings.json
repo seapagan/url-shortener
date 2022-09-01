@@ -10,14 +10,14 @@
   },
   "editor.formatOnPaste": false,
   "emmet.includeLanguages": {
-    "django-html": "html"
+    "jinja-html": "html"
   },
   "emmet.triggerExpansionOnTab": true,
   "files.associations": {
     "**/*.html": "html",
     "**/requirements{/**,*}.{txt,in}": "pip-requirements",
     "**/templates/**/*": "django-txt",
-    "**/templates/**/*.html": "django-html"
+    "**/templates/**/*.html": "jinja-html"
   },
   "files.eol": "\n",
   "files.exclude": {
