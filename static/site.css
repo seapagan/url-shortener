@@ -32,8 +32,6 @@ a {
 }
 
 footer {
-  position: absolute;
-  bottom: -3em;
   text-align: center;
   font-size: 0.8rem;
 }
