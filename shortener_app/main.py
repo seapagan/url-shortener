@@ -130,10 +130,7 @@ def edit_url(
     if not validators.url(new_url.target_url):
         raise_bad_request(message="Your provided URL is not Valid")
     if db_url := crud.get_db_url_by_secret_key(db, secret_key=secret_key):
-        db_url.target_url = str(new_url.target_url)
-        db.commit()
-        db.refresh(db_url)
-        return db_url
+        return crud.update_db_url(db=db, url=db_url, new_url=new_url)
     else:
         raise_not_found(request)
 

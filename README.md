@@ -23,6 +23,7 @@ Non-exhaustive list of planned additions, in no specific order.
 - Option to add a delay to the redirect, showing the exact target URL and giving
   the option to Cancel.
 - User-friendly Front-end (probably in React) for adding and editing URLs.
+- Protected ability to purge all `is_active: false` URLs
 
 ## Development
 
