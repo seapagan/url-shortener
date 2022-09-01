@@ -119,6 +119,25 @@ def get_url_info(
         raise_not_found(request)
 
 
+@app.patch("/admin/{secret_key}", response_model=schemas.URL)
+def edit_url(
+    new_url: schemas.URLBase,
+    secret_key: str,
+    request: Request,
+    db: Session = Depends(get_db),
+):
+    """Admin path to edit the URL link."""
+    if not validators.url(new_url.target_url):
+        raise_bad_request(message="Your provided URL is not Valid")
+    if db_url := crud.get_db_url_by_secret_key(db, secret_key=secret_key):
+        db_url.target_url = str(new_url.target_url)
+        db.commit()
+        db.refresh(db_url)
+        return db_url
+    else:
+        raise_not_found(request)
+
+
 @app.delete("/admin/{secret_key}")
 def delete_url(
     secret_key: str, request: Request, db: Session = Depends(get_db)
