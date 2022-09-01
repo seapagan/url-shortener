@@ -77,6 +77,21 @@ def create_url(url: schemas.URLBase, db: Session = Depends(get_db)):
     return get_admin_info(db_url)
 
 
+@app.get("/{url_key}/peek", response_model=schemas.URLBase)
+def show_target_url(
+    url_key: str, request: Request, db: Session = Depends(get_db)
+):
+    """
+    Return only the target URL, do not redirect.
+
+    This allows users to check the URL before visiting.
+    """
+    if db_url := crud.get_db_url_by_key(db=db, url_key=url_key):
+        return db_url
+    else:
+        raise_not_found(request)
+
+
 @app.get("/{url_key}")
 def forward_to_target_url(
     url_key: str, request: Request, db: Session = Depends(get_db)
