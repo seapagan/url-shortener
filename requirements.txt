@@ -4,3 +4,5 @@ sqlalchemy
 python-dotenv
 validators
 jinja2
+databases[postgresql]
+databases[sqlite]
