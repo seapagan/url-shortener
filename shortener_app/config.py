@@ -11,6 +11,13 @@ class Settings(BaseSettings):
     base_url: str = "http://localhost:8000"
     db_url: str = "sqlite:///./shortner.db"
 
+    # Postgreqsl specific
+    db_name: str = "shortener"
+    db_address: str = "localhost"
+    db_port: str = "5432"
+    db_user: str = "db_user_name"
+    db_pw: str = "db_password"
+
     class Config:
         """Load env variables from .env file."""
 
@@ -21,5 +28,10 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Return the current settings."""
     settings = Settings()
+    settings.db_url: str = (
+        f"postgresql://{settings.db_user}:{settings.db_pw}"
+        f"@{settings.db_address}:{settings.db_port}/{settings.db_name}"
+    )
     print(f"Loading settings for: {settings.env_name}")
+    print(f"Database String: '{settings.db_url}'")
     return settings

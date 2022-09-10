@@ -63,7 +63,7 @@ def raise_not_found(request):
 
 
 @app.get("/")
-async def root_path(
+def root_path(
     request: Request, accept: Union[str, None] = Header(default="text/html")
 ):
     """The API Root Path.
