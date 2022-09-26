@@ -7,6 +7,10 @@ definitely recommend checking out for a decent example of a non-trivial
 
 ## Added Features
 
+- Refactored the code so that each 'group' of Routes is in its own file, and
+  moved some utility & error functions to a dedicated module. This makes the
+  project much cleaner and easier to understand. Add tags to each group for
+  better documentation.
 - `/list` (GET) route to return a list of all the URL's in the database along
   with their target.
 - `/{url_key}/peek` (GET) route to show the target url of the specified url_key,
