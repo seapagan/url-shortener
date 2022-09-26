@@ -9,7 +9,7 @@ definitely recommend checking out for a decent example of a non-trivial
 
 - `/list` (GET) route to return a list of all the URL's in the database along
   with their target.
-- `/{url_key}/peek` (GET) route to show the target url of the specified urk=l_key,
+- `/{url_key}/peek` (GET) route to show the target url of the specified url_key,
   without actually redirecting there. Allows users or front-end client to check
   the URL before visiting.
 - `/admin/{secret_key}` (PATCH) route to change the target URL of a link
@@ -17,6 +17,8 @@ definitely recommend checking out for a decent example of a non-trivial
   `target_url` property containing the new URL which must be a valid URL
 - The Root Path ("/") will return a short HTML template if viewed in a Web
   Browser, JSON otherwise.
+- Choose either the default `SQLite` database or `Postgresql` from the `.env`
+  file.
 
 ## Planned Features
 
@@ -26,7 +28,31 @@ Non-exhaustive list of planned additions, in no specific order.
   the option to Cancel.
 - User-friendly Front-end (probably in React) for adding and editing URLs.
 - Protected ability to purge all `is_active: false` URLs
-- Migrate away from SQLite, probably to a NO_SQL database with asyncio baked in.
+
+## Configuration
+
+This is done using the `.env` file in the root folder.
+See [.env.example](.env.example) for details:
+
+```ini
+ENV_NAME="Development"
+BASE_URL="http://127.0.0.1:8000"
+
+# Comment/Uncomment your choice of database. If Postgreql, the other 5 variables
+# below need to be also filled. Will default to SQLite if none selected.
+DB_BACKEND="sqlite"
+# DB_BACKEND="postgresql"
+
+# location and name of SQLite database, if used.
+DB_URL="sqlite:///./shortener.db"
+
+# Postgresql stuff if selected above.
+DB_NAME="<YOUR_DB_NAME>"
+DB_ADDRESS="<YOUR_DB_ADDRESS>"
+DB_PORT="<YOUR_DB_PORT>"
+DB_USER="<YOUR_DB_USER>"
+DB_PW="<YOUR_DB_PASSWORD>"
+```
 
 ## Development
 
