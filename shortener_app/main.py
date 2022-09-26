@@ -62,7 +62,7 @@ def raise_not_found(request):
     raise HTTPException(status_code=404, detail=message)
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def root_path(
     request: Request, accept: Union[str, None] = Header(default="text/html")
 ):
