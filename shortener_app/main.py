@@ -1,8 +1,7 @@
 """Main FastAPI App."""
-from typing import Union
 
 import validators
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -12,6 +11,7 @@ from starlette.datastructures import URL
 from . import crud, models, schemas
 from .config import get_settings
 from .database import SessionLocal, engine
+from .routes import home
 
 app = FastAPI(
     title="URL Shortener",
@@ -22,6 +22,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+app.include_router(home.router)
 
 
 def get_db():
@@ -60,23 +61,6 @@ def raise_not_found(request):
     """Raise an exception if the redirect key is not found in DB."""
     message = f"URL '{request.url}' doesn't exist"
     raise HTTPException(status_code=404, detail=message)
-
-
-@app.get("/", include_in_schema=False)
-def root_path(
-    request: Request, accept: Union[str, None] = Header(default="text/html")
-):
-    """The API Root Path.
-
-    Display an HTML template in a browser, JSON response otherwise.
-    """
-    if accept.split(",")[0] == "text/html":
-        return templates.TemplateResponse("index.html", {"request": request})
-
-    return {
-        "info": "Seapagan's URL Shortener (c)2022",
-        "website": "https://github.com/seapagan/fastapi-url-shortener",
-    }
 
 
 @app.get("/list", response_model=schemas.URLList)
