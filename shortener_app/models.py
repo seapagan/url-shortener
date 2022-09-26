@@ -15,3 +15,13 @@ class URL(Base):
     target_url = Column(String, index=True)
     is_active = Column(Boolean, default=True)
     clicks = Column(Integer, default=0)
+
+
+class User(Base):
+    """Define the User model."""
+
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
+    email = Column(String)
+    password = Column(String)
