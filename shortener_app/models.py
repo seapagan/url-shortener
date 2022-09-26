@@ -30,4 +30,4 @@ class User(Base):
     email = Column(String)
     password = Column(String)
 
-    urls = relationship("URL", back_populates="users")
+    urls = relationship("URL", back_populates="user")
