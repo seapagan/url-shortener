@@ -1,5 +1,6 @@
 """Describe the database."""
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 
 from .database import Base
 
@@ -16,6 +17,9 @@ class URL(Base):
     is_active = Column(Boolean, default=True)
     clicks = Column(Integer, default=0)
 
+    user_id = Column(Integer, ForeignKey("users.id"))
+    user = relationship("User", back_populates="urls")
+
 
 class User(Base):
     """Define the User model."""
@@ -25,3 +29,5 @@ class User(Base):
     username = Column(String)
     email = Column(String)
     password = Column(String)
+
+    urls = relationship("URL", back_populates="users")
