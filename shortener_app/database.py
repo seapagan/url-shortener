@@ -18,3 +18,12 @@ else:
     )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+
+def get_db():
+    """Create a new DB session with each request."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
