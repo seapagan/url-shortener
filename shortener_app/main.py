@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 
 from shortener_app import models
 from shortener_app.database import engine
-from shortener_app.routes import admin, home, url
+from shortener_app.routes import admin, auth, home, url
 
 app = FastAPI(
     title="URL Shortener",
@@ -17,5 +17,6 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(home.router)
 app.include_router(url.router)
 app.include_router(admin.router)
+app.include_router(auth.router)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
