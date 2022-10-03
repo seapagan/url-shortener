@@ -11,6 +11,7 @@ app = FastAPI(
     title="URL Shortener",
     description="A FastAPI-based URL shortener and redirector.",
     version="0.3.0",
+    swagger_ui_parameters={"defaultModelsExpandDepth": 0},
 )
 models.Base.metadata.create_all(bind=engine)
 
