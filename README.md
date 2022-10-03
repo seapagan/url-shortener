@@ -23,7 +23,7 @@ definitely recommend checking out for a decent example of a non-trivial
   Browser, JSON otherwise.
 - Choose either the default `SQLite` database or `Postgresql` from the `.env`
   file.
-- The URL is case-sensitive, so added lowercase letters to the mix for extra
+- The URL Key is case-sensitive, so added lowercase letters to the mix for extra
   availability. Now the key will randomly include upper, lower and numbers.
 
 ## Planned Features
