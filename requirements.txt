@@ -6,3 +6,7 @@ validators
 jinja2
 databases[postgresql]
 databases[sqlite]
+bcrypt
+python-jose
+passlib
+python-multipart

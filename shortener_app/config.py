@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     # default to SQLite
     db_backend: str = "sqlite"
 
+    jwt_secret_key: str = "<CHANGE ME!!!!!>"
+    jwt_expire_minutes: int = 20
+
     class Config:
         """Load env variables from .env file."""
 
@@ -31,6 +34,7 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Return the current settings."""
     settings = Settings()
+
     if settings.db_backend == "postgresql":
         settings.db_url: str = (
             f"postgresql://{settings.db_user}:{settings.db_pw}"

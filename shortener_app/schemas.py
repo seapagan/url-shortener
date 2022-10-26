@@ -39,3 +39,23 @@ class URLInfo(URL):
 
     url: str
     admin_url: str
+
+
+class User(BaseModel):
+    """Define the User Model."""
+
+    username: str
+    email: str
+    password: str
+
+
+class DisplayUser(BaseModel):
+    """This schema will display the User (doesn't show password)."""
+
+    username: str
+    email: str
+
+    class Config:
+        """Enable ORM compatibility."""
+
+        orm_mode = True

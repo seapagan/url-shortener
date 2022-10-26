@@ -62,6 +62,13 @@ DB_ADDRESS="<YOUR_DB_ADDRESS>"
 DB_PORT="<YOUR_DB_PORT>"
 DB_USER="<YOUR_DB_USER>"
 DB_PW="<YOUR_DB_PASSWORD>"
+
+# Secret Key for the JWT function. This should be random, at least 32 digits
+# and never shared or checked into Source Control!
+# try 'openssl rand -hex 32' on a linux machine
+JWT_SECRET_KEY="<CHANGE ME!!!!!>"
+# number of minutes before JWT expires
+JWT_EXPIRE_MINUTES=20
 ```
 
 ## Development
