@@ -1,5 +1,9 @@
 # FastAPI-based URL Shortener
 
+This repository is **DEPRECATED!** Use [url-shortener2](https://github.com/seapagan/url-shortener2)
+instead which is a re-written version of this repositry with Users and
+Authentication/Authorization baked in.
+
 This is based on an original tutorial from [Real
 Python](https://realpython.com/courses/url-shortener-fastapi/) which I
 definitely recommend checking out for a decent example of a non-trivial
